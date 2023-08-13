@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     // Get the current value of my joysticks left controller Y axis and set my motor_control_input variable to it
-    motor_control_input = 12.0 * my_joystick.getRawAxis(0); // multiple by 12 to get number to be -12.0 to +12.0
+    motor_control_input = 12.0 * my_joystick.getRawAxis(1); // multiple by 12 to get number to be -12.0 to +12.0
   }
 
   @Override
