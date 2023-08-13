@@ -27,24 +27,23 @@ public class Robot extends TimedRobot {
   CANSparkMax my_motor_controller = new CANSparkMax(20, MotorType.kBrushless);
 
   // We add this line to create a new instance of a "double" variable and set its value to 0
-  double motor_control_input = 0;
+  double motor_control_input = 0.0;
 
   @Override
   public void robotInit() {
     // This is a good idea; it "resets" the Spark Max to factory default settings
     my_motor_controller.restoreFactoryDefaults();
-    
+  }
+
+  @Override
+  public void robotPeriodic() {
+    // Get the current value of my joysticks left controller Y axis and set my motor_control_input variable to it
+    motor_control_input = 12.0 * my_joystick.getRawAxis(0); // multiple by 12 to get number to be -12.0 to +12.0
   }
 
   @Override
   public void teleopPeriodic() {
-
-    // Get the current value of my joysticks left controller Y axis and set my motor_control_input variable to it
-    motor_control_input = my_joystick.getRawAxis(0);
-
     // set the motor controller input to the value of motor_control_input
-    my_motor_controller.set(motor_control_input);
-
+    my_motor_controller.setVoltage(motor_control_input);
   }
-
 }
